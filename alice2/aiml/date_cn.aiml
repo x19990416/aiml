@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+<!-- File: date.aiml -->
+<!-- Author: Dr. Richard S. Wallace -->
+<!-- Last modified: July 19, 2014 -->
+<!--  -->
+<!-- This AIML file is part of the ALICE2 0.0.5 chat bot knowledge base. -->
+<!--  -->
+<!-- The ALICE2 brain is Copyright &copy; 2014 by ALICE AI Foundation. -->
+<!--  -->
+<!-- The ALICE2 brain is released under the terms of the GNU Lesser General -->
+<!-- Public License, as published by the Free Software Foundation. -->
+<!--  -->
+<!-- This file is distributed WITHOUT ANY WARRANTY; without even the  -->
+<!-- implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.   -->
+<!--  -->
+<!-- For more information see http://www.alicebot.org -->
+<!--  -->
+
+<category><pattern>季 节</pattern>
+<template><think><set var="month"><date format="%B" jformat="MMMMMMMMM"/></set>
+</think>
+<condition var="month">
+<li><value>一月</value>Winter</li>
+<li><value>二月</value>Winter</li>
+<li><value>三月</value>Winter</li>
+<li><value>四月</value>Spring</li>
+<li><value>五月</value>Spring</li>
+<li><value>六月</value>Summer</li>
+<li><value>七月</value>Summer</li>
+<li><value>八月</value>Summer</li>
+<li><value>九月</value>Fall</li>
+<li><value>十月</value>Fall</li>
+<li><value>十一月</value>Winter</li>
+<li><value>十二月</value>Winter</li>
+<li>unknown</li>
+</condition></template>
+</category>
+
+<category> 
+<pattern>今 天 是 几 号</pattern> 
+<template>今天是 <date/>。</template> 
+</category> 
+
+<category> 
+<pattern>今 天 星 期 几</pattern> 
+<template>今天是<date format="%A" jformat="EEEEEEEEEE"/> 。</template> 
+</category> 
+
+<category> 
+<pattern>今 天</pattern> 
+<template>今天是<date format="%A" jformat="EEEEEEEEEE"/> </template> 
+</category>
+
+
+<category> 
+<pattern>年</pattern> 
+<template><date format="%Y" jformat="yyyy"/></template> 
+</category> 
+
+<category><pattern>月</pattern>
+<template><date format="%B" jformat="MMMMMMMMM"/></template>
+</category>
+<category><pattern>日</pattern>
+<template>今天是<date format="%A" jformat="EEEEEEEEEE"/></template>
+</category>
+
+<category><pattern>明 年 ^</pattern>
+<template><map><name>successor</name><date format="%Y" jformat="yyyy"/></map></template>
+</category>
+
+<category><pattern>去 年 ^</pattern>
+<template><map><name>predecessor</name><date format="%Y" jformat="yyyy"/></map></template>
+</category>
+<category><pattern>后 年 ^</pattern>
+<template><think><set var="next year"><map><name>successor</name><date format="%Y" jformat="yyyy"/></map></set></think>
+<map name="successor"><get var="next year"/></map></template>
+</category>
+
+<category><pattern>明 天 ^</pattern>
+<template><think><set var="today"><date format="%A" jformat="EEEEEEEEEE"/></set></think>
+<map name="tomorrow"><get var="today"/></map></template>
+</category>
+
+<category><pattern>后 天 ^</pattern>
+<template><think><set var="today"><map name="tomorrow"><date format="%A" jformat="EEEEEEEEEE"/></map></set></think>
+<map name="tomorrow"><get var="today"/></map></template>
+</category>
+
+<category><pattern>时 间</pattern>
+<template>现在是<date format="%I:%M %p" jformat="h:mm a"/></template>
+</category>
+<category><pattern>日 期</pattern>
+<template>今天是<date format="%B %d, %Y" jformat="yyyy年M月d日"/></template>
+</category>
+</aiml>
